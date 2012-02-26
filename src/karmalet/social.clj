@@ -20,39 +20,49 @@
        (if-not (nil? resp#)
          (~callback resp#)))))
 
-(defsocial reddit-karma
+(defsocial reddit
   "http://www.reddit.com/user/%s/about.json"
   (fn [r]
     (-> r
         :data
         :link_karma)))
+(defn reddit-page [userid]
+  (format "http://www.reddit.com/user/%s" userid))
 
-(defsocial twitter-followers
+(defsocial twitter
   "https://api.twitter.com/1/statuses/user_timeline.json?screen_name=%s&count=1"
   (fn [r]
     (-> r
         first
         :user
         :followers_count)))
+(defn twitter-page [userid]
+  (format "https://twitter.com/%s" userid))
 
-(defsocial github-followers
+(defsocial github
   "https://api.github.com/users/%s"
   (fn [r]
     (-> r
         :followers)))
+(defn github-page [userid]
+  (format "https://github.com/%s" userid))
 
-(defsocial stackoverflow-karma
+(defsocial stackoverflow
   "http://api.stackoverflow.com/1.1/users/%s"
   (fn [r]
     (-> r
         :users
         first
         :reputation)))
+(defn stackoverflow-page [userid]
+  (format "http://stackoverflow.com/users/%s" userid))
 
-(defsocial hackernews-karma
+(defsocial hackernews
   "http://api.ihackernews.com/profile/%s"
   (fn [r]
     (-> r
         :karma)))
+(defn hackernews-page [userid]
+  (format "http://news.ycombinator.com/user?id=%s" userid))
 
 
