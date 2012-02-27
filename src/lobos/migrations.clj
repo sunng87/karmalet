@@ -11,9 +11,9 @@
       (create 
        (table :kusers (integer :id :primary-key :auto-inc)
               (varchar :email 100 :unique)
-              (timestamp :next-update)))
+              (timestamp :nextupdate)))
       (index :kusers [:email])
-      (index :kusers [:next-update]))
+      (index :kusers [:nextupdate]))
   (down []
         (drop (table :kusers))))
 
@@ -24,9 +24,19 @@
               (integer :user-id :not-null)
               (integer :service :not-null)
               (integer :karma :not-null)
-              (integer :karma-alt)))
+              (integer :karma_alt)))
       (index :karma [:user-id]))
   (down []
         (drop (table :karma))))
+
+(defmigration rename-user-table-timestamp
+  (up []
+      (alter
+       (table :kusers
+              (column :nextupdate :to :lastupdate))))
+  (down []
+        (alter
+         (table :kusers
+                (column :lastupdate :to :nextupdate)))))
   
 
