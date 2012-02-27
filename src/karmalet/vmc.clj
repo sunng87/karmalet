@@ -11,7 +11,7 @@
           (get service)
           first
           (get :credentials)
-          (get key))))))
+          (get key)))))
 
 (def mongo-config
   (partial vmc-service-config :mongodb-1.8))
@@ -47,10 +47,12 @@
   (mysql-config :user))
 (defn mysql-password []
   (mysql-config :password))
+(defn mysql-db []
+  (mysql-config :name))
 
 (def rabbitmq-config
   (partial vmc-service-config :rabbitmq-2.4))
-(def rabbitmq-url []
+(defn rabbitmq-url []
   (rabbitmq-config :url))
 
 (defn vmc? []

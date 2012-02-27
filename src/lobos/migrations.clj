@@ -21,11 +21,11 @@
   (up []
       (create 
        (table :karma (integer :id :primary-key :auto-inc)
-              (integer :user-id :not-null)
+              (integer :user_id :not-null)
               (integer :service :not-null)
               (integer :karma :not-null)
               (integer :karma_alt)))
-      (index :karma [:user-id]))
+      (index :karma [:user_id]))
   (down []
         (drop (table :karma))))
 
