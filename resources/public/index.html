@@ -5,7 +5,7 @@
     <title>Bootstrap, from Twitter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Sun Ning">
 
     <!-- Le styles -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -13,6 +13,17 @@
     <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+      .general-box {
+        padding:20px;
+        border-radius: 10px;
+        margin-top:20px;
+      }
+      #account-settings {
+        background-color:#E9F2F5;
+      }
+      #snippet-box {
+        background-color:#F0F5E9;
       }
     </style>
 
@@ -46,14 +57,74 @@
     </div>
 
     <div class="container">
+      
+      <div class="hero-unit">
+        <h1>Karmalet</h1>
+        <p>Track your karma on technology communities and display on your
+          website!</p>
 
-      <h1>Karmalet</h1>
-      <p>Track your karma on technology communities. Display it on your
-      website!</p>
-      <div>
-        <button class="btn btn-primary btn-large">
-          <i class="icon-user"></i> Sign in with BrowserID
-        </button>
+        <div class="row">
+          <div class="span4">
+            <button class="btn btn-primary btn-large">
+              <i class="icon-user"></i> Sign in with <strong>BrowserID</strong>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="account-settings" class="general-box">
+        <h2>Setup accounts</h2>
+        <p>Tell us your IDs on these sites.</p>
+        <div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Site</th>
+                <th>ID</th>
+                <th>Current Karma</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Reddit</td>
+                <td><input type="text" class="span3" id="rd-id" /></td>
+                <td><strong id="rd-k">0</strong> karma</td>
+              </tr>
+              <tr>
+                <td>StackOverflow</td>
+                <td><input type="text" class="span3" id="so-id" /></td>
+                <td><strong id="so-k">0</strong> reputations</td>
+              </tr>
+              <tr>
+                <td>Github</td>
+                <td><input type="text" class="span3" id="gh-id" /></td>
+                <td><strong id="gh-k">0</strong> followers</td>
+              </tr>
+              <tr>
+                <td>HackerNews</td>
+                <td><input type="text" class="span3" id="hn-id" /></td>
+                <td><strong id="hn-k">0</strong> karma</td>
+              </tr>
+              <tr>
+                <td>Twitter</td>
+                <td><input type="text" class="span3" id="tw-id" /></td>
+                <td><strong id="tw-k">0</strong> followers</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class=""><button class="btn"><i class="icon-ok"></i>
+          Save</button></div>
+        </div>
+      </div>
+
+      <div id="snippet-box" class="general-box">
+        <h2>Get Snippet</h2>
+        <p>Paste content below to your website.</p>
+
+        <div>
+          <textarea rows="3" class="input-xxlarge" id="snippet" readonly="true">create mode 100644 resources/public/bootstrap/img/glyphicons-halflings.png
+          </textarea>
+        </div>
       </div>
 
     </div> <!-- /container -->
