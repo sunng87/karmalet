@@ -7,7 +7,7 @@
                  [korma "0.2.1"]
                  [com.rabbitmq/amqp-client "2.7.1"]
                  [clj-time "0.3.7"]
-                 [mysql/mysql-connector-java "5.1.8"]
+                 [mysql/mysql-connector-java "5.1.18"]
                  [lobos "1.0.0-SNAPSHOT"]]
   :dev-dependencies [[lein-ring "0.5.4"]
                      [lein-lobos "0.8.0-SNAPSHOT"]])
