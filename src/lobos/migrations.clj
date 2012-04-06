@@ -11,9 +11,7 @@
       (create 
        (table :kusers (integer :id :primary-key :auto-inc)
               (varchar :email 100 :unique)
-              (timestamp :nextupdate)))
-      (index :kusers [:email])
-      (index :kusers [:nextupdate]))
+              (timestamp :nextupdate))))
   (down []
         (drop (table :kusers))))
 
@@ -29,14 +27,27 @@
   (down []
         (drop (table :karma))))
 
-(defmigration rename-user-table-timestamp
+
+
+
+(defmigration create-test-table
   (up []
-      (alter
-       (table :kusers
-              (column :nextupdate :to :lastupdate))))
+      (create
+       (table :kk
+              (integer :hello))))
   (down []
-        (alter
-         (table :kusers
-                (column :lastupdate :to :nextupdate)))))
+        (drop (table :kk))))
+
+(defmigration rename-test-table
+  (up []
+      (alter :rename
+             (table :kk
+                    (column :hello :to :world))))
+  (down []
+        (alter :rename
+               (table :kk
+                      (column :world :to :hello)))))
+
+
   
 
