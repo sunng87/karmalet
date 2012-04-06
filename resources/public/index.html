@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
+    <title>Karmalet</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Sun Ning">
@@ -18,6 +18,11 @@
         padding:20px;
         border-radius: 10px;
         margin-top:20px;
+      }
+      a.brand:link{
+        font-weight:bold;
+        color:#000;
+        text-shadow: #555 0 1px 0;
       }
       #account-settings {
         background-color:#E9F2F5;
@@ -48,8 +53,9 @@
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="https://github.com/sunng87/karmalet">Sources</a></li>
+              <li><a href="mailto:sunng@about.me">
+                  <i class="icon-envelope"></i> Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -65,7 +71,7 @@
 
         <div class="row">
           <div class="span4">
-            <button class="btn btn-primary btn-large">
+            <button id="browserid" class="btn btn-primary btn-large">
               <i class="icon-user"></i> Sign in with <strong>BrowserID</strong>
             </button>
           </div>
@@ -131,8 +137,13 @@
 
     <!-- Le javascript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Placed at the end of the document so the pages load faster
+    -->
+    <script src="https://browserid.org/include.js"
+            type="text/javascript"></script>
+    <script src="jquery/jquery-1.7.2.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
 
+    <script src="karmalet/karmalet.js"></script>
   </body>
 </html>

@@ -8,7 +8,7 @@
     "http://karmalet.cloudfoundry.com/"
     "http://localhost:3000/"))
 
-(defn verify [assertion]
+(defn verify-browserid [assertion]
   (let [data {:assertion assertion
               :audience audience}
         result (post browserid-verify-url                     
