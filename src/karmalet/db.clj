@@ -26,7 +26,15 @@
           (order :lastupdate :ASC)
           (limit 100)))
 
-(defn find-service-by-users [id]
+(defn find-user [email]
+  (select kusers
+          (fields [:id])
+          (where {:email email})))
+
+(defn save-user [email]
+  (insert kusers (values {:email email})))
+
+(defn find-service-by-user [id]
   (select karma
           (where {:user_id id})))
 

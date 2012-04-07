@@ -30,6 +30,9 @@
       #snippet-box {
         background-color:#F0F5E9;
       }
+      .hidden {
+        display:none;
+      }
     </style>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -74,11 +77,18 @@
             <button id="browserid" class="btn btn-primary btn-large">
               <i class="icon-user"></i> Sign in with <strong>BrowserID</strong>
             </button>
+            <span id="user-info" class="hidden">
+              Welcome, you are logged in.
+            </span>
           </div>
         </div>
       </div>
 
-      <div id="account-settings" class="general-box">
+      <div id="auth-failed" class="alert alert-error hidden">
+        Failed to login. Please try again.
+      </div>
+
+      <div id="account-settings" class="general-box hidden">
         <h2>Setup accounts</h2>
         <p>Tell us your IDs on these sites.</p>
         <div>
@@ -93,28 +103,29 @@
             <tbody>
               <tr>
                 <td>Reddit</td>
-                <td><input type="text" class="span3" id="rd-id" /></td>
-                <td><strong id="rd-k">0</strong> karma</td>
+                <td><input type="text" class="span3" id="reddit-id" /></td>
+                <td><strong id="reddit-k">0</strong> karma</td>
               </tr>
               <tr>
                 <td>StackOverflow</td>
-                <td><input type="text" class="span3" id="so-id" /></td>
-                <td><strong id="so-k">0</strong> reputations</td>
+                <td><input type="text" class="span3" id="stackoverflow-id" /></td>
+                <td>
+                  <strong id="stackoverflow-k">0</strong> reputations</td>
               </tr>
               <tr>
                 <td>Github</td>
-                <td><input type="text" class="span3" id="gh-id" /></td>
-                <td><strong id="gh-k">0</strong> followers</td>
+                <td><input type="text" class="span3" id="github-id" /></td>
+                <td><strong id="github-k">0</strong> followers</td>
               </tr>
               <tr>
                 <td>HackerNews</td>
-                <td><input type="text" class="span3" id="hn-id" /></td>
-                <td><strong id="hn-k">0</strong> karma</td>
+                <td><input type="text" class="span3" id="hackernews-id" /></td>
+                <td><strong id="hackernews-k">0</strong> karma</td>
               </tr>
               <tr>
                 <td>Twitter</td>
-                <td><input type="text" class="span3" id="tw-id" /></td>
-                <td><strong id="tw-k">0</strong> followers</td>
+                <td><input type="text" class="span3" id="twitter-id" /></td>
+                <td><strong id="twitter-k">0</strong> followers</td>
               </tr>
             </tbody>
           </table>
@@ -123,8 +134,8 @@
         </div>
       </div>
 
-      <div id="snippet-box" class="general-box">
-        <h2>Get Snippet</h2>
+      <div id="snippet-box" class="general-box hidden">
+        <h2>Get Code Snippet</h2>
         <p>Paste content below to your website.</p>
 
         <div>
