@@ -43,9 +43,10 @@
           (set-fields {:karma k})
           (where {:id id})))
 
-(defn add-service [userid kv]
-  (let [mk-data (fn [k v] {:user_id userid :service k :karma v})
-        data (map #(apply mk-data %) kv)]
+(defn add-service [userid service-accounts]
+  (let [mk-data (fn [service-account]
+                  (assoc service-account :user_id userid))
+        data (map mk-data service-accounts)]
   (insert karma
           (values data))))
 

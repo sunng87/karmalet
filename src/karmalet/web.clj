@@ -1,7 +1,8 @@
 (ns karmalet.web
   (:use [karmalet db browserid social])
   (:use [compojure core route handler])
-  (:use [ring.util json response]))
+  (:use [ring.util json response])
+  (:use [cheshire.core]))
 
 (defn login [req]
   (let [assertion (-> req :params :assertion)
@@ -31,10 +32,16 @@
                              "stackoverflow" (stackoverflow id)
                              "hackernews" (hackernews id))}) ))
 
+(defn save-accounts [req]
+  (let [user-id (-> req :session :id)
+        services (-> req :params :services parse-string)]
+    (add-service user-id services)))
+
 (defroutes web-routes
   (GET "/" [] (redirect "index.html"))
   (POST "/login" [] login)
   (GET "/karma" [] get-karma)
+  (POST "/accounts" [] save-accounts)
   (resources "/"))
 
 (def app

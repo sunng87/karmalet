@@ -3,11 +3,14 @@
   var karmalet = {};
 
   karmalet.init = function() {
+    // setup login button
     $('#browserid').click(
       function(){
         navigator.id.get(karmalet.gotAssertion);
         return false;
       });
+
+    // setup id field actions
     var services = ['reddit', 'stackoverflow',
                    'github', 'twitter', 'hackernews'];
     jQuery.each(services, function(i, e){
@@ -26,7 +29,37 @@
         });
       });
     });
-    
+
+    // setup save button
+    $('#save-account-btn').click(function(){
+      var data = [];
+      jQuery.each(services, function(i, e){
+        var idfield = '#'+e+'-id';
+        var karmafield = '#'+e+'-k';
+
+        if ($(idfield).val().length > 0) {
+          var accountinfo = {};
+          accountinfo['service'] = e;
+          accountinfo['account'] = $(idfield).val();
+          accountinfo['karma'] = parseInt($(karmafield).text());
+
+          data.push(accountinfo);
+        }
+      });
+
+      if(data.length > 0){
+        $.ajax({
+          type: 'POST',
+          url: 'accounts',
+          data: {services: JSON.stringify(data)},
+          success: function(res, status, xhr){
+            $('#save-info').fadeIn(2000, function(){
+              $('#save-info').fadeOut();
+            });
+          }
+        });
+      }
+    });
   };
 
   karmalet.gotAssertion = function(assertion){
@@ -41,6 +74,15 @@
                $('#user-info').fadeIn();
              });
              karmalet.user = res.id;
+
+             jQuery.each(res.services, function(i, e){
+               var service = e.service;
+               var idfield = '#'+service+'-id';
+               var karmafield = '#'+service+'-k';
+               $(idfield).val(e.account);
+               $(karmafield).text(e.karma);
+             });
+
              $('#account-settings').show();
              $('#snippet-box').show();
            } else {

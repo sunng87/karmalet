@@ -20,7 +20,7 @@
       (create 
        (table :karma (integer :id :primary-key :auto-inc)
               (integer :user_id :not-null)
-              (integer :service :not-null)
+              (varchar :service 20 :not-null)
               (integer :karma :not-null)
               (integer :karma_alt)))
       (index :karma [:user_id]))
@@ -28,26 +28,15 @@
         (drop (table :karma))))
 
 
-
-
-(defmigration create-test-table
+(defmigration add-karma-account-field
   (up []
-      (create
-       (table :kk
-              (integer :hello))))
-  (down []
-        (drop (table :kk))))
+      (alter :add
+             (table :karma
+                    (varchar :account 40)))))
 
-(defmigration rename-test-table
+(defmigration remove-karma-alt-field
   (up []
-      (alter :rename
-             (table :kk
-                    (column :hello :to :world))))
-  (down []
-        (alter :rename
-               (table :kk
-                      (column :world :to :hello)))))
-
-
-  
+      (alter :drop
+             (table :karma
+                    (column :karma_alt)))))  
 
